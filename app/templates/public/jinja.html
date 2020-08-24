@@ -1,0 +1,76 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %} Jinja Template {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Jinja Templates</h1>
+    <hr>
+
+    <h4>Variables</h4>
+    <hr>
+    <p>Name: {{ myname }}</p>
+
+    <h4>Looping</h4>
+    <hr>
+    <ul>
+        {% for lang in langs %}
+            <li>{{lang}}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Looping with index</h4>
+    <hr>
+    <ul>
+        {% for lang in langs %}
+            <li>{{loop.index0}} : {{lang}}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Looping in dict</h4>
+    <hr>
+    <ul>
+        {% for (k, v) in friends.items() %}
+            <li>{{ k }} : {{ v }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Looping in dict keys</h4>
+    <hr>
+    <ul>
+        {% for k in friends.keys() %}
+            <li>{{ k }}</li>
+        {% endfor %}
+    </ul>
+
+    <h4>Access list members</h4>
+    <hr>
+    <p>{{ langs[0] }}</p>
+
+    <h4>Access dict members</h4>
+    <hr>
+    <p>{{ friends["Tom"] }}</p>
+
+    <h4>Access class attributes</h4>
+    <hr>
+    <p>{{ my_remote.name }}</p>
+
+    <h4>Unpack variables</h4>
+    <hr>
+    {% set a, b = colors %}
+    <p>{{ a }}</p>
+    <p>{{ b }}</p>
+
+    <h4>Call a Function</h4>
+    <hr>
+    <p>{{ repeat("Flask is awesome, ", 10) }}</p>
+
+    <h4>Call a class method</h4>
+    <hr>
+    <p>{{ my_remote.clone() }}</p>
+
+
+</div>
+    
+{% endblock %} 
