@@ -2,6 +2,9 @@ from app import app # app from app/__init__.py file
 
 from flask import render_template
 
+from datetime import datetime
+
+
 @app.route("/")
 @app.route("/index")
 def index():
@@ -17,6 +20,7 @@ def about():
 def jinja():
     
     myname = 'Theo'
+
     age = 40
     
     langs = ['Python', 'JavaScript', 'Bash', 'C', 'Ruby']
@@ -52,6 +56,12 @@ def jinja():
 
     def repeat(x:str, qty:int):
         return x * qty
+    
+    date = datetime.utcnow()
+
+    my_html = "<h1>Hi There</h1>"
+
+    suspecious = "<script>alert('You got hacked!!!')</script>"
 
     return render_template('public/jinja.html', 
         myname = myname,
@@ -62,6 +72,9 @@ def jinja():
         friends = friends,
         GitRemote = GitRemote,
         repeat = repeat,
-        my_remote = my_remote
+        my_remote = my_remote,
+        date = date,
+        my_html = my_html,
+        suspecious = suspecious
 
     )

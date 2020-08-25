@@ -1,5 +1,7 @@
 {% extends "public/templates/public_template.html" %}
 
+{% import "macros/input_macros.html" as im %}
+
 {% block title %} Jinja Template {% endblock %}
 
 {% block body %}
@@ -70,6 +72,56 @@
     <hr>
     <p>{{ my_remote.clone() }}</p>
 
+
+    <h4>Conditions</h4>
+    <hr>
+    {% if cool %}
+        <p>Cool is {{ cool }}</p>
+    {% endif %}
+
+    <h4>Comparisons</h4>
+    <hr>
+    {% if age < 18 %}
+        <p>No entry</p>
+    {% elif age < 26 %}
+        <p>Nearly there</p>
+    {% else %}
+        <p>You may enter</p>
+    {% endif %}
+
+    <h4>Template filters</h4>
+    <hr>
+    <p>Length or Size of langs list object: {{ langs|length}}</p>
+    <p>Reverse myname variable: {{ myname|reverse}}</p>
+    <p>Reverse myname variable: {{ myname|upper}}</p>
+    <p>Join list elements, with a ' , ' seperator: {{ langs|join("~ ")}}</p>
+
+    <h4>Custom filters</h4>
+    <hr>
+    <p>{{ date|clean_date }}</p>
+
+    <h4>Escaping CSRF or XSS attack</h4>
+    <hr>
+    <!-- make sure the html is comming from safe sources, by default Flask and Jinja escapes the html tags -->
+    {{my_html|safe}}    
+
+    <h4>Injecting JavaScript</h4>
+    <hr>
+    <p>{{ suspecious }}</p>
+    <!-- <p>{{ suspecious|safe }}</p> -->
+
+    <h4>Macros</h4>
+    <hr>
+
+    {{ im.input(label="Your name", type="text", name="your-name", id="your-name", placeholder="Enter your name")}}
+
+    {{ im.input(label="Your email", type="email", name="your-email", id="your-email", placeholder="Enter your email")}}
+
+    {{ im.input(label="Your age", type="number", name="your-age", id="your-age", placeholder="Enter your age")}}
+
+    {{ im.input(label="Your password", type="password", name="your-password", id="your-password", placeholder="Enter your password")}}
+
+    
 
 </div>
     
