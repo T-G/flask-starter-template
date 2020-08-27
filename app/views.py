@@ -4,6 +4,10 @@ from flask import render_template, request, redirect, abort, json, jsonify, make
 
 from datetime import datetime
 
+import os
+
+from werkzeug.utils import secure_filename
+
 
 @app.route("/")
 @app.route("/index")
@@ -156,3 +160,57 @@ def query():
     #return "Query received", 200
     else:
         return "No query received", 200
+
+"""
+function allowed_image(filename:str) will check for validation in the filename
+and return bool True of False
+"""
+def allowed_image(filename:str):
+    
+    if not "." in filename:
+        return False
+    ext = filename.rsplit(".", 1)[1]
+
+    if ext.upper() in app.config["ALLOWED_IMAGE_EXTENSIONS"]:
+        return True
+    else:
+        return False
+
+def allowed_image_filesize(filesize):
+    if int(filesize) <= app.config["MAX_IMAGE_FILESIZE"]:
+        return True
+    else:
+        return False
+
+@app.route("/upload-image", methods=["GET","POST"])
+def upload_image():
+
+    if request.method == "POST":
+        if request.files:
+            
+            #print(request.cookies)
+            if not allowed_image_filesize(request.cookies.get("filesize")):
+                print("File exceeded maximum file size")
+                return redirect(request.url)
+
+            image = request.files["image"]
+
+            # Check for filename validation
+            if image.filename == "":
+                print("Image must have a file name")
+            
+            if not allowed_image(image.filename):
+                print("The uploaded image extension is not allowed")
+                return redirect(request.url)
+            else:
+                # If the filename is of melicious nature, change the file name 
+                # before uploading to the server
+                filename = secure_filename(image.filename)
+            
+                image.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
+            
+            print("Image saved..")
+            
+            return redirect(request.url)
+
+    return render_template("public/upload_image.html")

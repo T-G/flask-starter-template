@@ -15,7 +15,10 @@ class Config(object):
     DB_USERNAME = "root"
     DB_PASSWORD = "password"
 
-    UPLOADS = "/home/username/app/app/static/images/uploads"
+    #UPLOADS = "/home/username/app/app/static/images/uploads"
+    #IMAGE_UPLOADS = "/home/theo/workspace/flask-starter-template/app/static/img/uploads"
+    ALLOWED_IMAGE_EXTENSIONS = ["PNG", "JPG", "JPEG", "GIF"]
+    MAX_IMAGE_FILESIZE = 0.5 * 1024 * 1024
 
     SESSION_COOKIE_SECURE = True
 
@@ -31,7 +34,9 @@ class DevelopmentConfig(Config):
     DB_USERNAME = "root"
     DB_PASSWORD = "password"
 
-    UPLOADS = "/home/username/projects/flask_test/app/app/static/images/uploads"
+    #UPLOADS = "/home/username/projects/flask_test/app/app/static/images/uploads"
+    IMAGE_UPLOADS = "/home/theo/workspace/flask-starter-template/app/static/img/uploads"
+
 
     SESSION_COOKIE_SECURE = False
 
@@ -43,7 +48,7 @@ class TestingConfig(Config):
     DB_USERNAME = "root"
     DB_PASSWORD = "password"
 
-    UPLOADS = "/home/username/projects/flask_test/app/app/static/images/uploads"
+    #UPLOADS = "/home/username/projects/flask_test/app/app/static/images/uploads"
     
     SESSION_COOKIE_SECURE = False
 
