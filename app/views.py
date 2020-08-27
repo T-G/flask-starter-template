@@ -4,9 +4,6 @@ from flask import render_template, request, redirect, abort, json, jsonify, make
 
 from datetime import datetime
 
-import os
-
-from werkzeug.utils import secure_filename
 
 
 @app.route("/")
@@ -165,6 +162,10 @@ def query():
 function allowed_image(filename:str) will check for validation in the filename
 and return bool True of False
 """
+import os
+
+from werkzeug.utils import secure_filename
+
 def allowed_image(filename:str):
     
     if not "." in filename:
@@ -214,3 +215,53 @@ def upload_image():
             return redirect(request.url)
 
     return render_template("public/upload_image.html")
+
+
+"""
+Types/converters
+
+string: #by default
+int:
+float:
+path:
+uuid:
+
+Allow client to download files from server directory
+"""
+from flask import send_from_directory
+
+# Download images file
+@app.route("/get-image/<string:filename>")
+def get_image(filename:str):
+    try:
+        return send_from_directory(app.config["CLIENT_IMAGES"], filename=filename, as_attachment=True)
+    
+    except FileNotFoundError:
+        abort(404)
+
+# Download .csv file
+@app.route("/get-csv/<string:filename>")
+def get_csv(filename:str):
+    try:
+        return send_from_directory(app.config["CLIENT_CSV"], filename=filename, as_attachment=True)
+    
+    except FileNotFoundError:
+        abort(404)
+
+# Download .pdf file
+@app.route("/get-pdf/<string:filename>")
+def get_pdf(filename:str):
+    try:
+        return send_from_directory(app.config["CLIENT_PDF"], filename=filename, as_attachment=True)
+    
+    except FileNotFoundError:
+        abort(404)
+
+# Download .xls file
+@app.route("/get-report/<path:path>")
+def get_report(path):
+    try:
+        return send_from_directory(app.config["CLIENT_REPORTS"], filename=path, as_attachment=True)
+    
+    except FileNotFoundError:
+        abort(404)

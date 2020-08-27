@@ -19,6 +19,7 @@ class Config(object):
     #IMAGE_UPLOADS = "/home/theo/workspace/flask-starter-template/app/static/img/uploads"
     ALLOWED_IMAGE_EXTENSIONS = ["PNG", "JPG", "JPEG", "GIF"]
     MAX_IMAGE_FILESIZE = 0.5 * 1024 * 1024
+    # CLIENT_IMAGES = "home/theo/workspace/flask-starter-template/app/static/client/img"
 
     SESSION_COOKIE_SECURE = True
 
@@ -36,6 +37,13 @@ class DevelopmentConfig(Config):
 
     #UPLOADS = "/home/username/projects/flask_test/app/app/static/images/uploads"
     IMAGE_UPLOADS = "/home/theo/workspace/flask-starter-template/app/static/img/uploads"
+    CLIENT_IMAGES = "/home/theo/workspace/flask-starter-template/app/static/client/img"
+    CLIENT_CSV = "/home/theo/workspace/flask-starter-template/app/static/client/csv"
+    CLIENT_PDF = "/home/theo/workspace/flask-starter-template/app/static/client/pdf"
+    CLIENT_REPORTS = "/home/theo/workspace/flask-starter-template/app/static/client/reports"
+
+
+
 
 
     SESSION_COOKIE_SECURE = False
