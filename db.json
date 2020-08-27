@@ -1,0 +1,16 @@
+{"mitsuhiko" : {
+        "name" : "Armin Ronacher",
+        "bio" : "Creator of Flask",
+        "twitter_handle": "@mitsuhiko"
+    },
+    "gvanrossum" : {
+        "name" : "Guido Van Rossum",
+        "bio" : "Creator of Python Programming Language",
+        "twitter_handle": "@gvanrossum"
+    },
+    "elonmask" : {
+        "name" : "Elon Musk",
+        "bio" : "Technnology Entrepreneur, investor and engineer",
+        "twitter_handle": "@elonmask"
+    }
+}
