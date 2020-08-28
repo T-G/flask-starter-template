@@ -25,7 +25,7 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    SECRET_KEY = "4571028dc68c6e149749584f2dfae7db078a5ad3b84ec893"
+    SECRET_KEY = "PE97G_F_ATW9F3wavuAUyA"
 
 
 class DevelopmentConfig(Config):

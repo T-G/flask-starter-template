@@ -1,16 +1,23 @@
-{"mitsuhiko" : {
-        "name" : "Armin Ronacher",
+{"theog" : {
+        "name" : "Theotones Gomes",
+        "username" : "theog",
+        "email" : "theog@gmail.com",
+        "password" : "potatoes",
         "bio" : "Creator of Flask",
-        "twitter_handle": "@mitsuhiko"
+        "twitter_handle": "@theog"
     },
-    "gvanrossum" : {
-        "name" : "Guido Van Rossum",
+    "oscarg" : {
+        "name" : "Oscar Gomes",
+        "username" : "oscarg",
+        "email" : "oscarg@yahoo.com",
         "bio" : "Creator of Python Programming Language",
-        "twitter_handle": "@gvanrossum"
+        "twitter_handle": "@oscarg"
     },
-    "elonmask" : {
-        "name" : "Elon Musk",
+    "dewg" : {
+        "name" : "Dew Gomes",
+        "username": "dewg",
+        "email": "dewg@hotmail.com",
         "bio" : "Technnology Entrepreneur, investor and engineer",
-        "twitter_handle": "@elonmask"
+        "twitter_handle": "@dewg"
     }
 }

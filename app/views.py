@@ -307,3 +307,52 @@ def cookies():
     res.set_cookie("chewy", "yes")
 
     return res
+
+"""
+Working with Flask Session object
+requires SECRET_KEY token 
+Here is the steps to create one from python shell
+
+import secrets
+secrets.token_urlsafe(16)
+
+Important note: Do not store sensetive information in session, use redis or database to store 
+them.
+
+"""
+from flask import session, url_for
+
+@app.route("/sign-in", methods=["GET", "POST"])
+def sign_in():
+
+    if request.method == "POST":
+        
+        req = request.form
+        
+        username = req.get("username")
+        password = req.get("password")
+
+        with open("db.json", "r") as f:
+            users = json.load(f)
+            
+            print(users)
+            
+            if not username in users:
+                return redirect(request.url)
+            else:
+                user = users[username]   
+
+            if not password == user["password"]:
+                print("Password incorrect!")
+                return redirect(request.url)
+            else:
+                session["USERNAME"] = user["username"]
+                print("User added to session")
+                return redirect(url_for("profile", username=session["USERNAME"]))
+
+    return render_template("public/signin.html")
+
+@app.route("/sign-out")
+def sign_out():
+    session.pop("USERNAME", None)
+    return redirect(url_for("sign_in"))
