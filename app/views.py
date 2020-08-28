@@ -265,3 +265,45 @@ def get_report(path):
     
     except FileNotFoundError:
         abort(404)
+
+"""
+Setting Cookies
+Modules: response and make_response
+make_response() allows us to add or modify the response before
+sending the response to the browser
+
+"""
+@app.route("/cookies")
+def cookies():
+    # Create a response object
+    res = make_response("Cookies", 200)
+
+    #Get the cookies
+    cookies = request.cookies
+
+    flavour = cookies.get("flavour")
+    chocolateType = cookies.get("chocolateType")
+    chewy = cookies.get("chewy")
+
+    print(f"flavour: {flavour}")
+    print(f"chocolate type: {chocolateType}")
+    print(f"chewy: {chewy}")
+
+
+    #Setting Cookies
+    res.set_cookie(
+        "flavour",
+        value="chocolate chip",
+        max_age=10, # 10 sec
+        expires=None,
+        path=request.url,
+        domain=None,
+        secure=False,
+        httponly=False,
+        samesite=None
+    )
+
+    res.set_cookie("chocolateType", "dark")
+    res.set_cookie("chewy", "yes")
+
+    return res
