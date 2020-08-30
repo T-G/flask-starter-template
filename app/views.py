@@ -10,6 +10,7 @@ from datetime import datetime
 @app.route("/index")
 def index():
     print(f"Flask app is set to: {app.config['ENV']}")
+    abort(403)
     return render_template('public/index.html')
 
 

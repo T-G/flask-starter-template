@@ -14,3 +14,4 @@ else:
 from app import views
 from app import admin_views
 from .filters import clean_date
+from app import error_handlers

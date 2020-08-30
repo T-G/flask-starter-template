@@ -1,0 +1,18 @@
+{% extends "public/templates/public_template.html" %}
+
+{% block title %} Forbidden {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Forbidden</h1>
+            <h3>You do not have the permission to access this page!</h3>
+            <hr>
+            <a href="{{ url_for('index') }}">Home</a>
+        </div>
+    </div>
+</div>
+    
+{% endblock %} 
