@@ -10,7 +10,7 @@ from datetime import datetime
 @app.route("/index")
 def index():
     print(f"Flask app is set to: {app.config['ENV']}")
-    abort(403)
+    #abort(403)
     return render_template('public/index.html')
 
 
@@ -338,7 +338,7 @@ def sign_out():
 
 """
 MESSAGE FLASHING
-Required Module: request, redirect and flash
+Required Module: request, redirect and flash, url_for
 
 """
 from flask import flash
@@ -366,7 +366,7 @@ def signup():
 
         elif email == "":
             flash("Please provide a valid Email", "warning")
-            return redirect(request.url, email)
+            return redirect(request.url)
 
         elif not len(password) >= 10:
             flash("Password must be at least 10 characters in length", "warning")
