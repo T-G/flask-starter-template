@@ -81,29 +81,6 @@ def jinja():
 
     )
 
-@app.route("/signup", methods=["GET", "POST"])
-def signup():
-    if request.method == "POST":
-        
-        """
-        Various ways to get the html form data
-        """
-
-        req = request.form
-
-        username = req["username"]
-        email = req.get("email")
-        
-        password = request.form['password']
-
-        print(username, email, password)
-
-        # redirect to the same url 
-        return redirect(request.url) 
-
-    return render_template('public/signup.html')
-
-
 @app.route("/profile/<username>")
 def profile(username:str):
     try:
@@ -352,7 +329,50 @@ def sign_in():
 
     return render_template("public/signin.html")
 
+
 @app.route("/sign-out")
 def sign_out():
     session.pop("USERNAME", None)
     return redirect(url_for("sign_in"))
+
+"""
+MESSAGE FLASHING
+Required Module: request, redirect and flash
+
+"""
+from flask import flash
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        
+        """
+        Various ways to get the html form data
+        """
+
+        req = request.form
+
+        #username = req["username"]
+        #password = request.form['password']
+
+        username = req.get("username")
+        email = req.get("email")
+        password = req.get('password')
+
+        if username == "" and len(username) < 3:
+            flash("Username cannot be empty or less than 3 characters", "warning")
+            return redirect(request.url)
+
+        elif email == "":
+            flash("Please provide a valid Email", "warning")
+            return redirect(request.url, email)
+
+        elif not len(password) >= 10:
+            flash("Password must be at least 10 characters in length", "warning")
+            return redirect(request.url)
+        else:
+            flash("Account Created", "success") 
+            return redirect(request.url) 
+
+    return render_template('public/signup.html')
+
